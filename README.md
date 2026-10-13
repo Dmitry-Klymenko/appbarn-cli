@@ -4,6 +4,8 @@ Small, MIT-licensed [AppBarn](https://app-barn.com) command-line client. Node.js
 
 ## Install
 
+Available after the first verified npm release (publication is not yet confirmed).
+
 ```sh
 npm install -g appbarn-cli
 appbarn --help
