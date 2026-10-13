@@ -1,0 +1,37 @@
+{
+  "name": "appbarn-cli",
+  "version": "0.2.2",
+  "description": "Minimal CLI for uploading, downloading and locally re-signing AppBarn builds.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "appbarn": "dist/src/index.js"
+  },
+  "files": [
+    "dist/src/**/*.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dmitry-Klymenko/appbarn-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dmitry-Klymenko/appbarn-cli/issues"
+  },
+  "homepage": "https://github.com/Dmitry-Klymenko/appbarn-cli#readme",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "verify": "npm run build && npm test && node tools/verify-package.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "7.0.2",
+    "vitest": "4.1.11"
+  }
+}
