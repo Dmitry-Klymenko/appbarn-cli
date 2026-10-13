@@ -1,6 +1,6 @@
 {
   "name": "appbarn-cli",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Minimal CLI for uploading, downloading and locally re-signing AppBarn builds.",
   "license": "MIT",
   "type": "module",
