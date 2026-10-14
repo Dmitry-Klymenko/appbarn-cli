@@ -4,7 +4,7 @@ Small, MIT-licensed [AppBarn](https://app-barn.com) command-line client. Node.js
 
 ## Install
 
-Version 0.2.3 is the release candidate for this public repository's MIT-licensed package and provenance. The existing npm 0.2.2 package predates the public-repository release and carries the old private-repository metadata. The candidate is not published until its matching tag's publish workflow succeeds.
+Version 0.2.4 is the release candidate for this public repository's MIT-licensed package and provenance. The existing npm 0.2.2 package predates the public-repository release and carries the old private-repository metadata. The candidate is not published until its matching tag's publish workflow succeeds.
 
 ```sh
 npm install -g appbarn-cli
