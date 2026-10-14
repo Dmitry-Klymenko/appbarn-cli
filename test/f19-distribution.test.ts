@@ -8,8 +8,8 @@ afterEach(() => { globalThis.fetch = originalFetch; vi.restoreAllMocks(); });
 
 describe('F19 CLI distribution contract', () => {
   it('uses one stable version for offline version output and API user agent', () => {
-    expect(CLI_VERSION).toBe('0.2.3');
-    expect(CLI_USER_AGENT).toBe('appbarn/0.2.3');
+    expect(CLI_VERSION).toBe('0.2.4');
+    expect(CLI_USER_AGENT).toBe('appbarn/0.2.4');
   });
 
   it('uses a publishable executable path without npm manifest correction', () => {
