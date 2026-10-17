@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
         with:
-          node-version: 22
+          node-version: 24
       - name: Validate tag and ancestry
         shell: bash
         run: |
@@ -46,3 +46,5 @@ jobs:
           CHANNEL=latest
           if [[ "$GITHUB_REF_NAME" == *-rc.* ]]; then CHANNEL=next; fi
           npm publish --access public --provenance --tag "$CHANNEL"
+      - name: Verify exact registry version, channel and provenance
+        run: node tools/verify-published.mjs "$GITHUB_REF_NAME"

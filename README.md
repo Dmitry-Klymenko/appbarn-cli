@@ -4,7 +4,7 @@ Small, MIT-licensed [AppBarn](https://app-barn.com) command-line client. Node.js
 
 ## Install
 
-Version 0.2.4 is the release candidate for this public repository's MIT-licensed package and provenance. The existing npm 0.2.2 package predates the public-repository release and carries the old private-repository metadata. The candidate is not published until its matching tag's publish workflow succeeds.
+Version 0.2.4 is the release candidate for this public repository's MIT-licensed package and provenance. The existing npm 0.2.2 package predates the public-repository release and carries the old private-repository metadata. The candidate is not published until its matching tag's publish workflow and registry read-back succeed.
 
 ```sh
 npm install -g appbarn-cli
@@ -38,7 +38,7 @@ Other commands: `appbarn resign --help` (local signing prerequisites required). 
 | `v0.3.0-rc.1` | `next` (prerelease) | `npm i -g appbarn-cli@next` |
 | `v0.3.0` | `latest` (stable) | `npm i -g appbarn-cli` |
 
-Tags must match `package.json` and point to a verified `main` commit; no prerelease branch. Publishing uses GitHub Actions + npm trusted publishing (OIDC), **not** a stored npm token. Maintainer must first configure the npm package's trusted publisher for this repository and `.github/workflows/publish.yml`. No tags or npm releases are created by the repository split.
+Tags must match `package.json` and point to a verified `main` commit; no prerelease branch. Publishing uses GitHub Actions + npm trusted publishing (OIDC), **not** a stored npm token. Maintainer must first configure the npm package's trusted publisher for this repository and `.github/workflows/publish.yml`. Post-publish CI verifies exact npm version and dist-tag, tarball integrity field, public repository metadata and provenance attestation reference. Install the published package and run `npm audit signatures` to cryptographically verify registry signatures/attestations. npm trusted publisher must be configured for this public repo and `publish.yml`, with token publishing disabled after first success. No npm tag or release is created by these verification changes.
 
 ## License
 
