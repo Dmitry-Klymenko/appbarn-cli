@@ -1,0 +1,14 @@
+{
+  "name": "appbarn-official",
+  "description": "Official AppBarn skills for AI coding assistants.",
+  "owner": {
+    "name": "AppBarn"
+  },
+  "plugins": [
+    {
+      "name": "appbarn",
+      "source": "./plugins/appbarn",
+      "description": "Assess AppBarn fit, upload and find builds, and understand iOS/Android installation."
+    }
+  ]
+}
