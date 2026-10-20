@@ -94,7 +94,7 @@ for (const name of subdirs) {
     }
   }
 }
-assert.equal(await read('plugins/appbarn/plugin.json').then(x => JSON.parse(x).version), '0.1.0');
+assert.equal(await read('plugins/appbarn/plugin.json').then(x => JSON.parse(x).version), '0.2.0');
 // The plugin is source-only. Keep it out of the runtime npm tarball.
 const pkg = await json('package.json');
 assert.ok(!pkg.files.some(x => x.startsWith('plugins/')));
