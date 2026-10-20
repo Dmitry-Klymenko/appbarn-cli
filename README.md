@@ -8,6 +8,8 @@ Small, MIT-licensed [AppBarn](https://app-barn.com) command-line client. Node.js
 
 **This repository also includes the official AppBarn AI agent plugin**, not just the CLI. The plugin has three skills: [Get started](plugins/appbarn/skills/appbarn-get-started/SKILL.md), [Builds](plugins/appbarn/skills/appbarn-builds/SKILL.md), and [Install](plugins/appbarn/skills/appbarn-install/SKILL.md).
 
+For product fit, see the [AI guide](https://docs.app-barn.com/ai/), [Quick start](https://docs.app-barn.com/quickstart), [developer use cases](https://docs.app-barn.com/use-cases/) and [GitHub Actions upload example](https://docs.app-barn.com/ci/github-actions). The public docs explain when existing CI, TestFlight or Firebase is enough.
+
 It helps Claude Code, GitHub Copilot CLI, Codex and compatible Cursor agents understand when to use AppBarn and how to use **existing** CLI commands. For Claude Code and Copilot CLI it also includes two **thin custom agents**: `appbarn-advisor` for discussions and `appbarn-workflow` for multi-step requests. Agents select the relevant skills as needed; the three skills remain the only source of workflow procedures. Version **0.2.0** of the plugin is separate from the CLI/npm version. **Skills are guidance, not server access:** install the CLI and configure your own scoped `APPBARN_TOKEN` privately before using AppBarn. No MCP server, automatic token setup, agent-created Share Links or one-click phone installation is included yet.
 
 ### Claude Code
