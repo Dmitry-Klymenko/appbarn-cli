@@ -10,4 +10,4 @@ Skill descriptions can be read first and detailed instructions loaded when relev
 
 See the [root README](../../README.md#ai-agent-plugin) for Claude, Copilot, Codex and Cursor installation. Inspect `appbarn --help` before asking an agent to act. Never put your token into a prompt, repository or plugin file.
 
-Version `0.1.0` is the **plugin** version, separate from the npm CLI package version.
+Version `0.2.0` is the **plugin** version, separate from the npm CLI package version.
