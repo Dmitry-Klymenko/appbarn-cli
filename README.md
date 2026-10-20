@@ -6,7 +6,7 @@ Small, MIT-licensed [AppBarn](https://app-barn.com) command-line client. Node.js
 
 **This repository also includes the official AppBarn AI agent plugin**, not just the CLI. The plugin has three skills: [Get started](plugins/appbarn/skills/appbarn-get-started/SKILL.md), [Builds](plugins/appbarn/skills/appbarn-builds/SKILL.md), and [Install](plugins/appbarn/skills/appbarn-install/SKILL.md).
 
-It helps Claude Code, GitHub Copilot CLI, Codex and compatible Cursor agents understand when to use AppBarn and how to use **existing** CLI commands. Version **0.1.0** of the plugin is separate from the CLI/npm version. **Skills are guidance, not server access:** install the CLI and configure your own scoped `APPBARN_TOKEN` privately before using AppBarn. No MCP server, automatic token setup, agent-created Share Links or one-click phone installation is included yet.
+It helps Claude Code, GitHub Copilot CLI, Codex and compatible Cursor agents understand when to use AppBarn and how to use **existing** CLI commands. For Claude Code and Copilot CLI it also includes two **thin custom agents**: `appbarn-advisor` for discussions and `appbarn-workflow` for multi-step requests. Agents select the relevant skills as needed; the three skills remain the only source of workflow procedures. Version **0.1.0** of the plugin is separate from the CLI/npm version. **Skills are guidance, not server access:** install the CLI and configure your own scoped `APPBARN_TOKEN` privately before using AppBarn. No MCP server, automatic token setup, agent-created Share Links or one-click phone installation is included yet.
 
 ### Claude Code
 
@@ -16,7 +16,7 @@ claude plugin install appbarn@appbarn-official
 claude plugin list
 ```
 
-Use `/appbarn:appbarn-get-started` or simply ask how to retain an Android or iOS build.
+Use `/appbarn:appbarn-get-started` or ask how to retain a build. For longer discussions or multi-step flows, ask Claude Code to delegate to `appbarn:appbarn-advisor` or `appbarn:appbarn-workflow`. These agents invoke relevant skills when needed rather than preloading them.
 
 ### GitHub Copilot CLI
 
@@ -26,7 +26,7 @@ copilot plugin install appbarn@appbarn-official
 copilot plugin list
 ```
 
-Ask: "Use AppBarn to find a build from this Git commit." These commands apply to **Copilot CLI**, not every GitHub Copilot editor surface.
+Ask: "Use AppBarn to find a build from this Git commit." For a longer conversation choose `appbarn-advisor` from `/agent`; use `appbarn-workflow` for multi-step Build tasks. These commands apply to **Copilot CLI**, not every GitHub Copilot editor surface.
 
 ### Codex and Cursor
 
