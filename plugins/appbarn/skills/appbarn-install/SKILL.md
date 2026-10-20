@@ -1,6 +1,6 @@
 ---
 name: appbarn-install
-description: Explain how engineers and testers download or install existing AppBarn iOS IPA and Android APK builds, and clarify AAB limitations, iOS signing, share links and device restrictions. Use when asked to install or share an AppBarn build.
+description: Explain AppBarn Share Links, iOS IPA and Android APK installation rules, and AAB download-only limits. Use for sharing or installing an existing AppBarn build.
 ---
 
 # Install and share AppBarn builds
@@ -27,3 +27,5 @@ Read the [sharing and installation guide](https://docs.app-barn.com/guides/share
 - Share Links are time-limited (currently seven days), revocable for future access and must not be placed in source control or logs.
 - Never expose signing passwords, keys, provisioning profiles or private artifacts to a coding assistant.
 - Report unsupported and unknown installability clearly; never promise that an IPA or APK will install.
+
+**Result:** State install eligibility separately from confirmed device installation. For unsupported agent sharing, give the human UI steps.
