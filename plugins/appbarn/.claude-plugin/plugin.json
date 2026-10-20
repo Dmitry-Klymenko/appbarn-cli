@@ -1,0 +1,11 @@
+{
+  "name": "appbarn",
+  "version": "0.1.0",
+  "description": "AppBarn mobile build archive skills for Claude Code.",
+  "author": {
+    "name": "AppBarn"
+  },
+  "homepage": "https://docs.app-barn.com/ai/",
+  "repository": "https://github.com/Dmitry-Klymenko/appbarn-cli",
+  "license": "MIT"
+}
