@@ -26,7 +26,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "verify": "npm run build && npm test && node tools/verify-package.mjs",
+    "verify": "npm run build && npm test && node tools/verify-plugin.mjs && node tools/verify-package.mjs",
     "prepack": "npm run build"
   },
   "devDependencies": {
