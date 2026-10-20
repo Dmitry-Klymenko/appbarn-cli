@@ -11,11 +11,11 @@
 ## Official agent plugin
 
 - `plugins/appbarn` is the canonical source for the shipped skills. Keep it compatible with Agent Plugins 1.0 and the Claude native manifest.
-- Keep the agent layer thin: exactly two optional Claude/Copilot profiles (`appbarn-advisor` for discussions and `appbarn-workflow` for multi-step work), no orchestration, duplicate API client, background process or token-handling scripts. The profiles must select relevant skills on demand, never preload every skill. Skills own workflow instructions; existing CLI/API handle operations, validation and permissions.
+- Keep exactly two canonical agent sources in `plugins/appbarn/agents/`: `appbarn-advisor` and `appbarn-workflow`. The Copilot-specific `.agent.md` files are **generated**, not manually edited. Run `npm run plugin:agents:sync` after editing either source. CI checks for drift. No orchestration, duplicate API client, background process or token-handling scripts. Agents select skills on demand; the CLI/API handle operations and permissions.
 - Short distinct descriptions support on-demand skill loading. Do not claim measured token savings without a benchmark.
 - `.claude-plugin/marketplace.json`, `.github/plugin/marketplace.json`, and `.agents/plugins/marketplace.json` must resolve to that same plugin folder.
 - Do not advertise planned CLI/MCP commands in executable examples. Skills may only invoke supported published CLI commands, and must distinguish user approval from server authorization.
-- Run `node tools/verify-plugin.mjs` with any plugin change. Keep plugin files out of the npm tarball.
+- Run `npm run verify` with any plugin change. Agent profiles must match `tools/sync-plugin-agents.mjs --check`. Keep plugin files out of the npm tarball.
 - Do not claim Claude, Copilot, Codex or Cursor client integration passed without a real client installation and invocation.
 
 ## Proof before claims
