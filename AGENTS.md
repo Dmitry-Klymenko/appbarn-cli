@@ -8,6 +8,14 @@
 - **Review/verify:** look for concrete faults in auth/token handling, signed URLs, checksum and upload/download integrity, filesystem races, process spawning, signing secrets, compatibility and regression coverage. Prioritize bugs and security issues; describe severity, precise location, reproduction and missing tests. "No findings" requires saying what was actually checked.
 - **Implement:** prefer the smallest local change and no new dependencies. Preserve stable CLI options, API protocol, exit codes, version/User-Agent and secret handling. Add focused positive and negative tests for behavior changed; avoid unrelated refactors.
 
+## Official agent plugin
+
+- `plugins/appbarn` is the canonical source for the shipped skills. Keep it compatible with Agent Plugins 1.0 and the Claude native manifest.
+- `.claude-plugin/marketplace.json`, `.github/plugin/marketplace.json`, and `.agents/plugins/marketplace.json` must resolve to that same plugin folder.
+- Do not advertise planned CLI/MCP commands in executable examples. Skills may only invoke supported published CLI commands, and must distinguish user approval from server authorization.
+- Run `node tools/verify-plugin.mjs` with any plugin change. Keep plugin files out of the npm tarball.
+- Do not claim Claude, Copilot, Codex or Cursor client integration passed without a real client installation and invocation.
+
 ## Proof before claims
 
 1. Read `README.md`, `package.json`, the affected `src/` files and adjacent `test/` cases.
