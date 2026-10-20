@@ -2,6 +2,8 @@
 
 Small, MIT-licensed [AppBarn](https://app-barn.com) command-line client. Node.js 22+; no application/server code, no bundled signing tools.
 
+**New to AppBarn?** Read the [Quick start](https://docs.app-barn.com/quickstart), [mobile build use cases](https://docs.app-barn.com/use-cases/), and [AI product guide](https://docs.app-barn.com/ai/). See [CI examples](https://docs.app-barn.com/ci/) or [GitHub Actions setup](https://docs.app-barn.com/ci/github-actions) before changing a pipeline.
+
 ## AI agent plugin
 
 **This repository also includes the official AppBarn AI agent plugin**, not just the CLI. The plugin has three skills: [Get started](plugins/appbarn/skills/appbarn-get-started/SKILL.md), [Builds](plugins/appbarn/skills/appbarn-builds/SKILL.md), and [Install](plugins/appbarn/skills/appbarn-install/SKILL.md).
