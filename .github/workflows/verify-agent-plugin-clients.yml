@@ -1,0 +1,57 @@
+name: verify-agent-plugin-clients
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.claude-plugin/**'
+      - '.github/plugin/**'
+      - '.agents/plugins/**'
+      - 'plugins/**'
+      - '.github/workflows/verify-agent-plugin-clients.yml'
+  push:
+    branches: [main]
+    paths:
+      - '.claude-plugin/**'
+      - '.github/plugin/**'
+      - '.agents/plugins/**'
+      - 'plugins/**'
+      - '.github/workflows/verify-agent-plugin-clients.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  plugin-clients:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: 22
+      - name: Install verified client versions
+        run: npm install -g @anthropic-ai/claude-code@2.1.304 @github/copilot@1.0.88
+      - name: Validate native Claude plugin and marketplace
+        run: |
+          claude plugin validate ./plugins/appbarn
+          claude plugin validate .
+      - name: Install local Copilot plugin and inspect marketplace
+        run: |
+          copilot plugin marketplace add .
+          copilot plugin marketplace browse appbarn-official
+          copilot plugin install appbarn@appbarn-official
+          copilot plugin list
+
+  codex-marketplace:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: 22
+      - name: Install Codex CLI
+        run: npm install -g @openai/codex@0.163.0
+      - name: Register and list Codex plugin marketplace
+        run: |
+          codex plugin marketplace add .
+          codex plugin marketplace list

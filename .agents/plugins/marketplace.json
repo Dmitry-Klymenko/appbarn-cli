@@ -1,0 +1,20 @@
+{
+  "name": "appbarn-official",
+  "interface": {
+    "displayName": "AppBarn official plugins"
+  },
+  "plugins": [
+    {
+      "name": "appbarn",
+      "source": {
+        "source": "local",
+        "path": "./plugins/appbarn"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
