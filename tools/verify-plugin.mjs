@@ -30,7 +30,7 @@ for (let i = 0; i < agentFolders.length; i++) {
   for (const name of agentNames) {
     const filename = name + (i === 0 ? '.md' : '.agent.md');
     const agent = await read(agentFolders[i] + '/' + filename);
-    assert.match(agent, /^---\\nname: [a-z0-9-]+\\ndescription: [^\\n]+\\n/);
+    assert.match(agent, /^---\nname: [a-z0-9-]+\ndescription: [^\n]+\n/);
     assert.equal(agent.match(/^name: (.+)$/m)?.[1], name);
     assert.ok(agent.length <= 1600, 'agent must be a thin wrapper: ' + filename);
     assert.ok(!/^skills:|^hooks:|^mcpServers:|^permissionMode:|^memory:|^background:/m.test(agent),
