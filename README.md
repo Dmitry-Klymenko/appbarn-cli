@@ -2,6 +2,40 @@
 
 Small, MIT-licensed [AppBarn](https://app-barn.com) command-line client. Node.js 22+; no application/server code, no bundled signing tools.
 
+## AI agent plugin
+
+**This repository also includes the official AppBarn AI agent plugin**, not just the CLI. The plugin has three skills: [Get started](plugins/appbarn/skills/appbarn-get-started/SKILL.md), [Builds](plugins/appbarn/skills/appbarn-builds/SKILL.md), and [Install](plugins/appbarn/skills/appbarn-install/SKILL.md).
+
+It helps Claude Code, GitHub Copilot CLI, Codex and compatible Cursor agents understand when to use AppBarn and how to use **existing** CLI commands. Version **0.1.0** of the plugin is separate from the CLI/npm version. **Skills are guidance, not server access:** install the CLI and configure your own scoped `APPBARN_TOKEN` privately before using AppBarn. No MCP server, automatic token setup, agent-created Share Links or one-click phone installation is included yet.
+
+### Claude Code
+
+```sh
+claude plugin marketplace add Dmitry-Klymenko/appbarn-cli
+claude plugin install appbarn@appbarn-official
+claude plugin list
+```
+
+Use `/appbarn:appbarn-get-started` or simply ask how to retain an Android or iOS build.
+
+### GitHub Copilot CLI
+
+```sh
+copilot plugin marketplace add Dmitry-Klymenko/appbarn-cli
+copilot plugin install appbarn@appbarn-official
+copilot plugin list
+```
+
+Ask: "Use AppBarn to find a build from this Git commit." These commands apply to **Copilot CLI**, not every GitHub Copilot editor surface.
+
+### Codex and Cursor
+
+- **Codex:** `codex plugin marketplace add Dmitry-Klymenko/appbarn-cli`, then open `/plugins` in a supported Codex client and install `appbarn` from `appbarn-official`. The catalog is [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json).
+- **Cursor:** The portable [Agent Plugins package](plugins/appbarn/plugin.json) can be installed as a local plugin through Cursor's Plugins/Customize UI. Copy `plugins/appbarn` to `~/.cursor/plugins/local/appbarn` for local testing. Public Cursor Marketplace listing needs separate submission/review.
+- **Xcode/Android Studio:** Use the CLI from the IDE terminal. Native plugin installation is not claimed.
+
+The plugin source, manifests, and test checks live under [`plugins/appbarn`](plugins/appbarn/) and [`tools/verify-plugin.mjs`](tools/verify-plugin.mjs). The npm package intentionally excludes plugin files. Run `npm run verify` to check the plugin, CLI tests and packed npm binary. Agent-client installation and real device behavior require separate testing.
+
 ## Install
 
 Version 0.2.4 is the release candidate for this public repository's MIT-licensed package and provenance. The existing npm 0.2.2 package predates the public-repository release and carries the old private-repository metadata. The candidate is not published until its matching tag's publish workflow and registry read-back succeed.
