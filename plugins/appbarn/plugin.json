@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "appbarn",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Use AppBarn with coding agents: assess fit, upload and find iOS/Android builds, and understand installation.",
   "author": {
     "name": "AppBarn"

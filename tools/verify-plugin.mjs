@@ -19,7 +19,31 @@ assert.equal(portable.name, 'appbarn');
 assert.equal(portable.license, 'MIT');
 assert.ok(!('mcpServers' in portable), 'skills-only plugin must not declare MCP tools');
 const pluginEntries = await readdir(pluginDir);
-for (const name of pluginEntries) assert.ok(!['agents', 'hooks', 'scripts', 'mcp.json', '.mcp.json'].includes(name), 'no agent runtime: ' + name);
+for (const name of pluginEntries) assert.ok(!['hooks', 'scripts', 'mcp.json', '.mcp.json'].includes(name), 'no active agent runtime or MCP: ' + name);
+
+const agentNames = ['appbarn-advisor', 'appbarn-workflow'];
+const agentFolders = ['plugins/appbarn/agents', 'plugins/appbarn/com.github.copilot/agents'];
+for (let i = 0; i < agentFolders.length; i++) {
+  const found = (await readdir(join(root, agentFolders[i]))).sort();
+  const wanted = agentNames.map(name => name + (i === 0 ? '.md' : '.agent.md')).sort();
+  assert.deepEqual(found, wanted, 'only two focused client-specific agents are supported');
+  for (const name of agentNames) {
+    const filename = name + (i === 0 ? '.md' : '.agent.md');
+    const agent = await read(agentFolders[i] + '/' + filename);
+    assert.match(agent, /^---\nname: [a-z0-9-]+\ndescription: [^\n]+\n/);
+    assert.equal(agent.match(/^name: (.+)$/m)?.[1], name);
+    assert.ok(agent.length <= 1600, 'agent must be a thin wrapper: ' + filename);
+    assert.ok(!/^skills:|^hooks:|^mcpServers:|^permissionMode:|^memory:|^background:/m.test(agent),
+      'no automatic skill preloading, elevated permissions, background workers or extra runtime: ' + filename);
+    const allowed = name === 'appbarn-advisor' ?
+      ['appbarn-get-started', 'appbarn-install'] :
+      ['appbarn-get-started', 'appbarn-builds', 'appbarn-install'];
+    for (const skill of allowed) assert.ok(agent.includes('`' + skill + '`'),
+      'agent must route to existing skill ' + skill + ': ' + filename);
+    assert.ok(/Do not|Never|do not|never/.test(agent), 'agent must state a non-action boundary');
+  }
+}
+
 assert.equal(claude.name, portable.name);
 assert.equal(claude.version, portable.version);
 for (const market of [claudeMarket, copilotMarket, codexMarket]) {
@@ -70,8 +94,8 @@ for (const name of subdirs) {
     }
   }
 }
-assert.equal(await read('plugins/appbarn/plugin.json').then(x => JSON.parse(x).version), '0.1.0');
+assert.equal(await read('plugins/appbarn/plugin.json').then(x => JSON.parse(x).version), '0.2.0');
 // The plugin is source-only. Keep it out of the runtime npm tarball.
 const pkg = await json('package.json');
 assert.ok(!pkg.files.some(x => x.startsWith('plugins/')));
-console.log('AppBarn plugin v' + portable.version + ': manifests, 3 skills, and CLI examples verified');
+console.log('AppBarn plugin v' + portable.version + ': manifests, 3 skills, 2 thin agents per supported client, and CLI examples verified');

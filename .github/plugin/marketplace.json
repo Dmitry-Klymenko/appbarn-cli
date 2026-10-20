@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "Official AppBarn mobile build skills",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "appbarn",
       "source": "./plugins/appbarn",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Understand, upload and retrieve mobile builds with AppBarn."
     }
   ]
