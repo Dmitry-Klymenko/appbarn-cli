@@ -35,12 +35,16 @@ jobs:
         run: |
           claude plugin validate ./plugins/appbarn
           claude plugin validate .
+          test -f plugins/appbarn/agents/appbarn-advisor.md
+          test -f plugins/appbarn/agents/appbarn-workflow.md
       - name: Install local Copilot plugin and inspect marketplace
         run: |
           copilot plugin marketplace add .
           copilot plugin marketplace browse appbarn-official
           copilot plugin install appbarn@appbarn-official
           copilot plugin list
+          find "$HOME/.copilot/installed-plugins" -name appbarn-advisor.agent.md | grep -q .
+          find "$HOME/.copilot/installed-plugins" -name appbarn-workflow.agent.md | grep -q .
 
   codex-marketplace:
     runs-on: ubuntu-latest
