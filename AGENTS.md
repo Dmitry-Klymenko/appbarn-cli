@@ -11,6 +11,8 @@
 ## Official agent plugin
 
 - `plugins/appbarn` is the canonical source for the shipped skills. Keep it compatible with Agent Plugins 1.0 and the Claude native manifest.
+- Keep the agent layer thin: no parallel orchestration, duplicate API client, autonomous background agent or token-handling scripts. Skills own workflow instructions; existing CLI/API handle operations, validation and permissions.
+- Short distinct descriptions support on-demand skill loading. Do not claim measured token savings without a benchmark.
 - `.claude-plugin/marketplace.json`, `.github/plugin/marketplace.json`, and `.agents/plugins/marketplace.json` must resolve to that same plugin folder.
 - Do not advertise planned CLI/MCP commands in executable examples. Skills may only invoke supported published CLI commands, and must distinguish user approval from server authorization.
 - Run `node tools/verify-plugin.mjs` with any plugin change. Keep plugin files out of the npm tarball.
