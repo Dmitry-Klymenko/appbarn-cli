@@ -17,6 +17,9 @@ assert.equal(portable.$schema, 'https://agent-plugins.org/schemas/1.0.0/plugin.s
 assert.match(portable.name, /^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/);
 assert.equal(portable.name, 'appbarn');
 assert.equal(portable.license, 'MIT');
+assert.ok(!('mcpServers' in portable), 'skills-only plugin must not declare MCP tools');
+const pluginEntries = await readdir(pluginDir);
+for (const name of pluginEntries) assert.ok(!['agents', 'hooks', 'scripts', 'mcp.json', '.mcp.json'].includes(name), 'no agent runtime: ' + name);
 assert.equal(claude.name, portable.name);
 assert.equal(claude.version, portable.version);
 for (const market of [claudeMarket, copilotMarket, codexMarket]) {
@@ -56,8 +59,8 @@ for (const name of subdirs) {
   assert.match(md, /^---\nname: [a-z0-9-]+\ndescription: .+\n---\n/);
   assert.equal(md.match(/^name: (.+)$/m)?.[1], name);
   const description = md.match(/^description: (.+)$/m)?.[1] ?? '';
-  assert.ok(description.length >= 40 && description.length <= 1024);
-  assert.ok(md.length < 12000, 'skill must remain concise');
+  assert.ok(description.length >= 40 && description.length <= 240, 'skill description must stay compact');
+  assert.ok(md.length < 5000, 'on-demand skill instructions must stay concise');
   assert.ok(!/\$\{?APPBARN_TOKEN\}?=\S+/.test(md), 'do not embed token assignments');
   for (const block of md.matchAll(/```sh\n([\s\S]*?)```/g)) {
     for (const line of block[1].split('\n').map(s => s.trim()).filter(Boolean)) {
