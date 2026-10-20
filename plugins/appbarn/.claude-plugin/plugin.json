@@ -1,6 +1,6 @@
 {
   "name": "appbarn",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "AppBarn mobile build archive skills for Claude Code.",
   "author": {
     "name": "AppBarn"
