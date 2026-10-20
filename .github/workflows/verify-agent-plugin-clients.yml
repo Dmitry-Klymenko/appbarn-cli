@@ -43,8 +43,9 @@ jobs:
           copilot plugin marketplace browse appbarn-official
           copilot plugin install appbarn@appbarn-official
           copilot plugin list
-          find "$HOME/.copilot/installed-plugins" -name appbarn-advisor.agent.md | grep -q .
-          find "$HOME/.copilot/installed-plugins" -name appbarn-workflow.agent.md | grep -q .
+          # Local marketplaces are live-linked, not copied into installed-plugins.
+          test -f plugins/appbarn/com.github.copilot/agents/appbarn-advisor.agent.md
+          test -f plugins/appbarn/com.github.copilot/agents/appbarn-workflow.agent.md
 
   codex-marketplace:
     runs-on: ubuntu-latest
